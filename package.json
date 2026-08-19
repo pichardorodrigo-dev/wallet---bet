@@ -1,0 +1,12 @@
+{
+  "name": "wallet-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Billetera virtual y pasarela de pagos - build/deploy como un unico servicio",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend && npm run build --prefix backend",
+    "start": "node backend/dist/index.js",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend"
+  }
+}

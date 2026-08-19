@@ -1,0 +1,27 @@
+# Blueprint de Render (https://render.com/docs/blueprint-spec).
+# En el dashboard de Render: New + -> Blueprint -> conectar este repositorio.
+# Render lee este archivo y crea el servicio automaticamente con esta config.
+services:
+  - type: web
+    name: wallet-app
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: PAYMENT_PROVIDER
+        value: MOCK
+      - key: DATABASE_URL
+        value: file:./data/dev.db
+      # MERCADOPAGO_ACCESS_TOKEN, MERCADOPAGO_PUBLIC_KEY y
+      # MERCADOPAGO_WEBHOOK_URL se agregan a mano desde el dashboard de
+      # Render (pestana Environment) el dia que se activa el proveedor real
+      # (PAYMENT_PROVIDER=MERCADOPAGO). No van en este archivo por ser
+      # credenciales.
